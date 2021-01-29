@@ -1,0 +1,20 @@
+.header {
+  padding: 50px 0px 10px 0px;
+  text-align: center;
+
+  p {
+    a {
+      text-decoration: underline;
+    }
+  }
+}
+
+.container {
+  padding: 30px 30px;
+}
+
+@media screen and (max-width: 750px) {
+  .container {
+    padding: 30px 12px;
+  }
+}

@@ -1,65 +1,129 @@
-import Head from 'next/head'
-import styles from '../styles/Home.module.css'
+import styles from "@styles/Home.module.scss";
+import Layout from "@components/Layout";
+import { calculateLatestCreation, ZORA_CREATIONS_BY_USER } from "data/queries";
+import { getPostByID } from "data/functions";
+import { useState, useEffect } from "react";
+import client from "data";
+import dayjs from "dayjs";
+import relativeTime from "dayjs/plugin/relativeTime";
+
+dayjs.extend(relativeTime);
 
 export default function Home() {
+  const [posts, setPosts] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [numPosts, setNumPosts] = useState(null);
+
+  const collectInitialPosts = async () => {
+    const allUsers = await client.request(ZORA_CREATIONS_BY_USER);
+    const numPosts = calculateLatestCreation(allUsers);
+
+    let initialPosts = [];
+    if (numPosts) {
+      console.log("Gets here");
+      for (let i = numPosts; i >= numPosts - 5; i--) {
+        const post = await getPostByID(i);
+        console.log(post.metadata.name);
+        initialPosts.push(post);
+      }
+    }
+
+    setPosts([...initialPosts]);
+    setNumPosts(numPosts - 6);
+    setLoading(false);
+  };
+
+  const collectMore = async () => {
+    setLoading(true);
+
+    let newPosts = [];
+
+    console.log(Math.max(numPosts - 6, 0), numPosts);
+    for (let i = numPosts; i > Math.max(numPosts - 6, 0); i--) {
+      const post = await getPostByID(i);
+      newPosts.push(post);
+    }
+
+    setPosts([...posts, ...newPosts]);
+    setNumPosts(numPosts - 6);
+    setLoading(false);
+  };
+
+  useEffect(() => {
+    collectInitialPosts();
+  }, []);
+
   return (
-    <div className={styles.container}>
-      <Head>
-        <title>Create Next App</title>
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
-
-      <main className={styles.main}>
-        <h1 className={styles.title}>
-          Welcome to <a href="https://nextjs.org">Next.js!</a>
-        </h1>
-
-        <p className={styles.description}>
-          Get started by editing{' '}
-          <code className={styles.code}>pages/index.js</code>
-        </p>
-
-        <div className={styles.grid}>
-          <a href="https://nextjs.org/docs" className={styles.card}>
-            <h3>Documentation &rarr;</h3>
-            <p>Find in-depth information about Next.js features and API.</p>
-          </a>
-
-          <a href="https://nextjs.org/learn" className={styles.card}>
-            <h3>Learn &rarr;</h3>
-            <p>Learn about Next.js in an interactive course with quizzes!</p>
-          </a>
-
-          <a
-            href="https://github.com/vercel/next.js/tree/master/examples"
-            className={styles.card}
-          >
-            <h3>Examples &rarr;</h3>
-            <p>Discover and deploy boilerplate example Next.js projects.</p>
-          </a>
-
-          <a
-            href="https://vercel.com/import?filter=next.js&utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className={styles.card}
-          >
-            <h3>Deploy &rarr;</h3>
-            <p>
-              Instantly deploy your Next.js site to a public URL with Vercel.
-            </p>
-          </a>
-        </div>
-      </main>
-
-      <footer className={styles.footer}>
-        <a
-          href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Powered by{' '}
-          <img src="/vercel.svg" alt="Vercel Logo" className={styles.logo} />
-        </a>
-      </footer>
-    </div>
-  )
+    <Layout>
+      {posts.length > 0 ? (
+        <>
+          <div className={styles.showcase}>
+            {posts.map((post, i) => {
+              return (
+                <div className={styles.showcase__card} key={i}>
+                  <div>
+                    <a
+                      href={`https://etherscan.io/address/${post.creator.id}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      {post.creator.id.substr(0, 5) +
+                        "..." +
+                        post.creator.id.slice(post.creator.id.length - 5)}
+                    </a>
+                    <span>
+                      {dayjs(
+                        parseInt(post.createdAtTimestamp) * 1000
+                      ).fromNow()}
+                    </span>
+                  </div>
+                  <div>
+                    {post.metadata.mimeType.startsWith("image") ? (
+                      <img src={post.contentURI} alt={post.metadata.name} />
+                    ) : post.metadata.mimeType.startsWith("text") ? (
+                      <span>{post.contentURI}</span>
+                    ) : (
+                      <video autoPlay playsInline loop>
+                        <source
+                          src={post.contentURI}
+                          type={post.metadata.mimeType}
+                        />
+                      </video>
+                    )}
+                  </div>
+                  <div>
+                    <h3>{post.metadata.name}</h3>
+                    <p>{post.metadata.description}</p>
+                    <span>
+                      Collected by{" "}
+                      <a
+                        href={`https://etherscan.io/address/${post.owner.id}`}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        {post.owner.id.substr(0, 5) +
+                          "..." +
+                          post.owner.id.slice(post.owner.id.length - 5)}
+                      </a>
+                    </span>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+          {posts.length !== numPosts ? (
+            <div className={styles.showcase__more}>
+              <button onClick={() => collectMore()} disabled={loading}>
+                {loading ? "Loading..." : "Load More"}
+              </button>
+            </div>
+          ) : (
+            <span>Is this the end or beginning? You decide.</span>
+          )}
+        </>
+      ) : (
+        <span>Loading...</span>
+      )}
+    </Layout>
+  );
 }
