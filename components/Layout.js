@@ -1,44 +1,83 @@
-import Link from "next/link";
-import Head from "next/head";
-import styles from "@styles/Layout.module.scss";
+import Link from "next/link"; // Dynamic routing
+import Head from "next/head"; // HTML Head
+import styles from "@styles/Layout.module.scss"; // Component styles
 
 export default function Layout({ children }) {
   return (
     <div>
-      <div className={styles.header}>
-        <Link href="/">
-          <a>
-            <img src="/logo_orb.png" alt="Zora" />
-          </a>
-        </Link>
-        <div>
-          <h2>Zora Gallery</h2>
-          <p>
-            Open protocols demand{" "}
-            <a
-              href="https://github.com/anish-agnihotri/zora.gallery"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              open
-            </a>{" "}
-            access.
-          </p>
-        </div>
-      </div>
+      {/* Meta */}
+      <Meta />
+
+      {/* Header */}
+      <Header />
+
+      {/* Content container */}
       <div className={styles.container}>{children}</div>
     </div>
   );
 }
 
+// Header
+function Header() {
+  return (
+    <div className={styles.header}>
+      {/* Logo */}
+      <Link href="/">
+        <a>
+          <img src="/logo_orb.png" alt="Zora" />
+        </a>
+      </Link>
+
+      {/* Description */}
+      <div>
+        <h2>Zora Gallery</h2>
+        <p>
+          Open protocols demand{" "}
+          <a
+            href="https://github.com/anish-agnihotri/zora.gallery"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            open
+          </a>{" "}
+          access.
+        </p>
+      </div>
+    </div>
+  );
+}
+
+// Meta
 function Meta() {
   return (
     <Head>
-      <link rel="preconnect" href="https://fonts.gstatic.com" />
-      <link
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
-        rel="stylesheet"
+      {/* Primary Meta Tags */}
+      <title>Zora Gallery</title>
+      <meta name="title" content="Zora Gallery" />
+      <meta
+        name="description"
+        content="Open protocols demand open access. Community-operated interface to ZoraOS."
       />
+
+      {/* Open Graph / Facebook */}
+      <meta property="og:type" content="website" />
+      <meta property="og:url" content="https://zora.gallery/" />
+      <meta property="og:title" content="Zora Gallery" />
+      <meta
+        property="og:description"
+        content="Open protocols demand open access. Community-operated interface to ZoraOS."
+      />
+      <meta property="og:image" content="https://zora.gallery/meta.png" />
+
+      {/* Twitter */}
+      <meta property="twitter:card" content="summary_large_image" />
+      <meta property="twitter:url" content="https://zora.gallery/" />
+      <meta property="twitter:title" content="Zora Gallery" />
+      <meta
+        property="twitter:description"
+        content="Open protocols demand open access. Community-operated interface to ZoraOS."
+      />
+      <meta property="twitter:image" content="https://zora.gallery/meta.png" />
     </Head>
   );
 }

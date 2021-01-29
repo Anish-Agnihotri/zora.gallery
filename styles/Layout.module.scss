@@ -1,3 +1,4 @@
+// Page hader
 .header {
   padding: 50px 0px 10px 0px;
   text-align: center;
@@ -9,12 +10,15 @@
   }
 }
 
+// Media container
 .container {
   padding: 30px 30px;
 }
 
+// Responsiveness
 @media screen and (max-width: 750px) {
   .container {
+    // Reduce left/right padding on mobile displays
     padding: 30px 12px;
   }
 }

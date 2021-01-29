@@ -1,3 +1,4 @@
+// Showcase container
 .showcase {
   display: grid;
   grid-template-columns: repeat(3, minmax(0px, 1fr));
@@ -6,10 +7,12 @@
   margin: 0px auto;
 }
 
+// Loading state
 .loading {
   text-align: center;
 }
 
+// Individual media card
 .showcase__card {
   border: 2px solid rgba(0, 0, 0, 0.05);
   max-width: 450px;
@@ -19,6 +22,7 @@
   margin-left: auto;
   margin-right: auto;
 
+  // Media card header
   div:nth-of-type(1) {
     border-bottom: 2px solid rgba(0, 0, 0, 0.05);
     padding: 20px 15px;
@@ -41,6 +45,7 @@
     }
   }
 
+  // Media card content
   div:nth-of-type(2) {
     flex: 1;
     height: auto;
@@ -75,6 +80,7 @@
     }
   }
 
+  // Media card footer
   div:nth-of-type(3) {
     padding: 15px;
     min-height: 80px;
@@ -110,11 +116,13 @@
   }
 }
 
+// Load more container
 .showcase__more {
   text-align: center;
   margin-top: 50px;
   padding-bottom: 50px;
 
+  // Load more button
   button {
     padding: 18px 25px;
     font-weight: 500;
@@ -132,14 +140,20 @@
   button:hover {
     background-color: rgba(0, 0, 0, 0.75);
   }
+
+  button:disabled {
+    cursor: not-allowed;
+  }
 }
 
+// Responsiveness: 2 column
 @media screen and (max-width: 1100px) {
   .showcase {
     grid-template-columns: repeat(2, minmax(0px, 1fr));
   }
 }
 
+// Responsiveness: 1 column
 @media screen and (max-width: 750px) {
   .showcase {
     grid-template-columns: repeat(1, minmax(0px, 1fr));
