@@ -20,10 +20,8 @@ export default function Home() {
 
     let initialPosts = [];
     if (numPosts) {
-      console.log("Gets here");
       for (let i = numPosts; i >= numPosts - 5; i--) {
         const post = await getPostByID(i);
-        console.log(post.metadata.name);
         initialPosts.push(post);
       }
     }
@@ -38,10 +36,13 @@ export default function Home() {
 
     let newPosts = [];
 
-    console.log(Math.max(numPosts - 6, 0), numPosts);
-    for (let i = numPosts; i > Math.max(numPosts - 6, 0); i--) {
-      const post = await getPostByID(i);
-      newPosts.push(post);
+    console.log(Math.max(numPosts - 5, 0), numPosts);
+    for (let i = numPosts; i >= Math.max(numPosts - 5, 0); i--) {
+      // FIXME: hardcoded fix for /dev/null lmao
+      if (i !== 2) {
+        const post = await getPostByID(i);
+        newPosts.push(post);
+      }
     }
 
     setPosts([...posts, ...newPosts]);
@@ -82,6 +83,13 @@ export default function Home() {
                       <img src={post.contentURI} alt={post.metadata.name} />
                     ) : post.metadata.mimeType.startsWith("text") ? (
                       <span>{post.contentURI}</span>
+                    ) : post.metadata.mimeType.startsWith("audio") ? (
+                      <audio controls>
+                        <source
+                          src={post.contentURI}
+                          type={post.metadata.mimeType}
+                        />
+                      </audio>
                     ) : (
                       <video autoPlay playsInline loop>
                         <source
@@ -111,18 +119,22 @@ export default function Home() {
               );
             })}
           </div>
-          {posts.length !== numPosts ? (
+          {posts && posts.length > 0 && posts[posts.length - 1].id !== "0" ? (
             <div className={styles.showcase__more}>
               <button onClick={() => collectMore()} disabled={loading}>
                 {loading ? "Loading..." : "Load More"}
               </button>
             </div>
           ) : (
-            <span>Is this the end or beginning? You decide.</span>
+            <div className={styles.showcase__more}>
+              <span>Is this the end or beginning? You decide.</span>
+            </div>
           )}
         </>
       ) : (
-        <span>Loading...</span>
+        <div className={styles.loading}>
+          <h3>Loading...</h3>
+        </div>
       )}
     </Layout>
   );

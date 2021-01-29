@@ -6,6 +6,10 @@
   margin: 0px auto;
 }
 
+.loading {
+  text-align: center;
+}
+
 .showcase__card {
   border: 2px solid rgba(0, 0, 0, 0.05);
   max-width: 450px;
@@ -67,6 +71,7 @@
       -webkit-line-clamp: 10;
       -webkit-box-orient: vertical;
       overflow: hidden;
+      word-break: break-word;
     }
   }
 
@@ -107,7 +112,7 @@
 
 .showcase__more {
   text-align: center;
-  margin-top: 20px;
+  margin-top: 50px;
   padding-bottom: 50px;
 
   button {
