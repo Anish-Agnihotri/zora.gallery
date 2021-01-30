@@ -1,18 +1,41 @@
 // Page hader
 .header {
-  padding: 50px 0px 10px 0px;
-  text-align: center;
+  padding: 40px 30px 30px 30px;
+  max-width: 1460px;
+  margin: 0px auto;
+  display: flex;
+  justify-content: space-between;
+  -webkit-box-pack: justify;
+  align-items: center;
+  position: sticky;
+  top: 0px;
 
-  p {
+  div {
+    width: auto;
+    flex: 1 1 40%;
+    display: flex;
+    align-items: center;
+  }
+
+  .header__logo {
+    justify-content: flex-start;
+
     a {
-      text-decoration: underline;
+      img {
+        width: 50px;
+        height: 50px;
+      }
     }
+  }
+
+  .header__menu {
+    justify-content: flex-end;
   }
 }
 
 // Media container
 .container {
-  padding: 30px 30px;
+  padding: 0px 30px 30px 30px;
 }
 
 // Responsiveness
@@ -20,5 +43,12 @@
   .container {
     // Reduce left/right padding on mobile displays
     padding: 30px 12px;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .header {
+    padding-left: 12px;
+    padding-right: 12px;
   }
 }

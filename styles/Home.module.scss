@@ -34,13 +34,25 @@
 
     a {
       font-weight: 600;
+
+      img {
+        height: 30px;
+        width: 30px;
+        border-radius: 50%;
+        vertical-align: middle;
+      }
+
+      span {
+        margin-left: 10px;
+        vertical-align: middle;
+      }
     }
 
     a:hover {
       text-decoration: underline;
     }
 
-    span {
+    > span {
       color: rgba(0, 0, 0, 0.5);
       font-size: 16px;
     }
@@ -99,13 +111,25 @@
       margin-block-start: 10px;
     }
 
-    span {
+    > span {
       color: rgba(0, 0, 0, 0.5);
       display: block;
       margin-block-end: 5px;
 
       a {
         color: rgba(0, 0, 0);
+
+        img {
+          width: 16px;
+          height: 16px;
+          vertical-align: middle;
+          border-radius: 50%;
+          margin-left: 5px;
+        }
+
+        span {
+          vertical-align: middle;
+        }
       }
 
       a:hover {

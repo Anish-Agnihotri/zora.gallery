@@ -21,27 +21,16 @@ export default function Layout({ children }) {
 function Header() {
   return (
     <div className={styles.header}>
-      {/* Logo */}
-      <Link href="/">
-        <a>
-          <img src="/logo_orb.png" alt="Zora" />
-        </a>
-      </Link>
-
-      {/* Description */}
-      <div>
-        <h2>Zora Gallery</h2>
-        <p>
-          Open protocols demand{" "}
-          <a
-            href="https://github.com/anish-agnihotri/zora.gallery"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            open
-          </a>{" "}
-          access.
-        </p>
+      <div className={styles.header__logo}>
+        {/* Logo */}
+        <Link href="/">
+          <a>
+            <img src="/logo_orb.png" alt="Zora" />
+          </a>
+        </Link>
+      </div>
+      <div className={styles.header__menu}>
+        <button>Connect Wallet</button>
       </div>
     </div>
   );

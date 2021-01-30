@@ -4,6 +4,7 @@ import Layout from "@components/Layout"; // Layout
 import { useState, useEffect } from "react"; // React state management
 import { getPostByID } from "data/functions"; // Post collection helper
 import styles from "@styles/Home.module.scss"; // Component styles
+import makeBlockie from "ethereum-blockies-base64"; // Ethereum avatar
 import relativeTime from "dayjs/plugin/relativeTime"; // Dayjs extension
 import { calculateLatestCreation, ZORA_CREATIONS_BY_USER } from "data/queries"; // queries
 
@@ -84,9 +85,12 @@ export default function Home() {
                       target="_blank"
                       rel="noopener noreferrer"
                     >
-                      {post.creator.id.substr(0, 5) +
-                        "..." +
-                        post.creator.id.slice(post.creator.id.length - 5)}
+                      <img src={makeBlockie(post.creator.id)} alt="Avatar" />
+                      <span>
+                        {post.creator.id.substr(0, 5) +
+                          "..." +
+                          post.creator.id.slice(post.creator.id.length - 5)}
+                      </span>
                     </a>
 
                     {/* Post time */}
@@ -137,9 +141,12 @@ export default function Home() {
                         target="_blank"
                         rel="noopener noreferrer"
                       >
-                        {post.owner.id.substr(0, 5) +
-                          "..." +
-                          post.owner.id.slice(post.owner.id.length - 5)}
+                        <span>
+                          {post.owner.id.substr(0, 5) +
+                            "..." +
+                            post.owner.id.slice(post.owner.id.length - 5)}
+                        </span>
+                        <img src={makeBlockie(post.owner.id)} alt="Avatar" />
                       </a>
                     </span>
                   </div>
