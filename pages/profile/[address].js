@@ -40,7 +40,7 @@ export default function Profile({ address }) {
   };
 
   // Collect owned media on load
-  useEffect(collectOwnedMedia, []);
+  useEffect(collectOwnedMedia, [address]);
 
   return (
     <Layout>
