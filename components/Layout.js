@@ -2,11 +2,11 @@ import Head from "next/head"; // HTML Head
 import Header from "@components/Header"; // Header component
 import styles from "@styles/pages/Layout.module.scss"; // Component styles
 
-export default function Layout({ children }) {
+export default function Layout({ children }, isProfile) {
   return (
     <div>
       {/* Meta */}
-      <Meta />
+      <Meta isProfile={isProfile} />
 
       {/* Header */}
       <Header />
@@ -18,7 +18,7 @@ export default function Layout({ children }) {
 }
 
 // Meta
-function Meta() {
+function Meta({ isProfile }) {
   return (
     <Head>
       {/* Primary Meta Tags */}
@@ -37,7 +37,6 @@ function Meta() {
         property="og:description"
         content="Open protocols demand open access. Community-operated interface to ZoraOS."
       />
-      <meta property="og:image" content="https://zora.gallery/meta.png" />
 
       {/* Twitter */}
       <meta property="twitter:card" content="summary_large_image" />
@@ -47,7 +46,17 @@ function Meta() {
         property="twitter:description"
         content="Open protocols demand open access. Community-operated interface to ZoraOS."
       />
-      <meta property="twitter:image" content="https://zora.gallery/meta.png" />
+
+      {!isProfile ? (
+        // If not profile page, display default meta
+        <>
+          <meta property="og:image" content="https://zora.gallery/meta.png" />
+          <meta
+            property="twitter:image"
+            content="https://zora.gallery/meta.png"
+          />
+        </>
+      ) : null}
     </Head>
   );
 }

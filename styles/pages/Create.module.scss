@@ -50,6 +50,7 @@
   margin: 0px auto;
   width: 100%;
   max-width: 1200px;
+  padding-bottom: 50px;
 
   // Create grid layout
   .create__grid {
@@ -221,10 +222,6 @@
 
 // Responsive
 @media screen and (max-width: 1000px) {
-  .create {
-    padding-bottom: 50px;
-  }
-
   // Column layout
   .create__grid {
     display: flex !important;

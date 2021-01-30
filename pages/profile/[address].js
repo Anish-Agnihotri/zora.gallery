@@ -1,3 +1,4 @@
+import Head from "next/head"; // Head meta
 import client from "@data/index"; // GraphQL client
 import Post from "@components/Post"; // Post component
 import Layout from "@components/Layout"; // Layout wrapper
@@ -44,6 +45,18 @@ export default function Profile({ address }) {
 
   return (
     <Layout>
+      <Head>
+        {/* Custom meta for profile */}
+        <meta
+          property="og:image"
+          content={`https://zora.gallery/meta/profile?address=${address}`}
+        />
+        <meta
+          property="twitter:image"
+          content={`https://zora.gallery/meta/profile?address=${address}`}
+        />
+      </Head>
+
       <div className={styles.profile}>
         {/* Profile header */}
         <div className={styles.profile__head}>
