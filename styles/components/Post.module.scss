@@ -123,3 +123,12 @@
     }
   }
 }
+
+// Unsupported asset type
+.showcase__unsupported {
+  text-align: center !important;
+
+  a {
+    text-decoration: underline;
+  }
+}

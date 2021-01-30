@@ -49,11 +49,19 @@ export default function Post({
           <audio controls>
             <source src={contentURI} type={mimeType} />
           </audio>
-        ) : (
+        ) : mimeType.startsWith("video") ? (
           // Else, if nothing else, return video component
           <video autoPlay playsInline loop>
             <source src={contentURI} type={mimeType} />
           </video>
+        ) : (
+          <span className={styles.showcase__unsupported}>
+            Unsupported file type ({mimeType}). <br />
+            <a href={contentURI} target="_blank" rel="noopener noreferrer">
+              Direct link
+            </a>
+            .
+          </span>
         )}
       </div>
 
