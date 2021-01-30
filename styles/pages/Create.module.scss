@@ -1,0 +1,233 @@
+// Create page unauthenticated state
+.create__unauthenticated {
+  display: block;
+  margin: 0px auto;
+  width: 100%;
+  max-width: 1200px;
+  text-align: center;
+
+  h2 {
+    margin-block-end: 0px;
+  }
+
+  p {
+    color: rgba(0, 0, 0, 0.5);
+    margin-block-start: 10px;
+  }
+
+  button {
+    padding: 18px 25px;
+    font-weight: 500;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+    text-decoration: none;
+    background-color: #000;
+    color: #fff;
+    margin-top: 20px;
+  }
+
+  button:focus {
+    outline: none;
+  }
+
+  button:hover {
+    background-color: rgba(0, 0, 0, 0.75);
+  }
+
+  button:disabled {
+    cursor: not-allowed;
+  }
+
+  button:disabled:focus {
+    background-color: #000;
+  }
+}
+
+// Create page authenticated state
+.create {
+  display: block;
+  margin: 0px auto;
+  width: 100%;
+  max-width: 1200px;
+
+  // Create grid layout
+  .create__grid {
+    display: inline-grid;
+    width: 100%;
+    column-gap: 30px;
+    grid-template-columns: repeat(12, 1fr);
+
+    // Input container
+    .create__grid_left {
+      height: auto;
+      grid-column: 1 / 7;
+    }
+
+    // Preview container
+    .create__grid_right {
+      height: auto;
+      grid-column: 8 / 13;
+    }
+
+    div {
+      > h2 {
+        font-weight: 500;
+        font-size: 30px;
+      }
+    }
+  }
+}
+
+.create__upload {
+  width: calc(100% - 4px);
+  border: 2px solid rgba(0, 0, 0, 0.1);
+  padding: 10px 0px 0px;
+
+  > div {
+    padding: 20px;
+  }
+
+  div:nth-of-type(1) {
+    div {
+      display: block;
+      margin-block-end: 20px;
+
+      label {
+        display: block;
+        font-size: 17px;
+        font-weight: 500;
+        margin-block-end: 10px;
+        text-align: left;
+      }
+
+      input,
+      textarea {
+        padding: 15px;
+        width: 100%;
+        min-height: 50px;
+        font-size: 15px;
+        line-height: 14px;
+        font-weight: 400;
+        transition: all 0.1s ease-in 0s;
+        color: black;
+        border: 1px solid transparent;
+        background: rgba(0, 0, 0, 0.05);
+        outline: none;
+      }
+
+      textarea {
+        min-height: 100px;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+          Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+      }
+
+      input:focus,
+      textarea:focus {
+        outline: none;
+        border-color: rgba(0, 0, 0, 0.05);
+      }
+
+      > span {
+        display: block;
+        color: rgba(0, 0, 0, 0.7);
+        padding-bottom: 15px;
+        text-align: left;
+      }
+    }
+
+    div:nth-last-of-type(1) {
+      margin-block-end: 0px;
+    }
+  }
+
+  > div:nth-of-type(2) {
+    border-top: 2px solid rgba(0, 0, 0, 0.1);
+    text-align: right;
+
+    button {
+      background-color: #000;
+      color: #fff;
+      border: none;
+      padding: 10px 20px;
+      font-size: 15px;
+      cursor: pointer;
+    }
+
+    button:focus {
+      outline: none;
+    }
+
+    button:hover {
+      background-color: rgba(0, 0, 0, 0.75);
+    }
+
+    button:disabled {
+      cursor: not-allowed;
+      color: rgba(255, 255, 255, 0.5);
+    }
+
+    button:disabled:hover {
+      background-color: #000;
+    }
+  }
+}
+
+.create__upload_required {
+  color: rgba(0, 0, 0, 0.3);
+}
+
+// Error to display for fee share field
+.create__error {
+  display: block;
+  width: 100%;
+  padding-top: 10px;
+  font-size: 14px;
+  color: #ff0033 !important;
+  text-align: right !important;
+}
+
+// Media upload field
+.upload__field {
+  padding: 15px;
+  width: 100%;
+  height: 100px;
+  font-size: 15px;
+  line-height: 14px;
+  font-weight: 400;
+  transition: all 0.1s ease-in 0s;
+  color: black;
+  border: 2px dashed rgba(0, 0, 0, 0.05);
+  background: rgba(0, 0, 0, 0.05);
+  outline: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+
+  > span {
+    display: block;
+    text-align: center !important;
+    line-height: 70px;
+    width: 100%;
+    color: rgba(0, 0, 0, 0.5);
+    padding-bottom: 0px !important;
+  }
+}
+
+.upload__field:hover {
+  opacity: 0.7;
+}
+
+// Responsive
+@media screen and (max-width: 1000px) {
+  .create {
+    padding-bottom: 50px;
+  }
+
+  // Column layout
+  .create__grid {
+    display: flex !important;
+    flex-direction: column;
+  }
+}

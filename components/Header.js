@@ -37,7 +37,9 @@ export default function Header() {
                   address.slice(address.length - 5)}
               </a>
             </Link>
-            <button className={styles.header__menu_button_black}>Create</button>
+            <Link href={`/create`}>
+              <a className={styles.header__menu_button_black}>Create</a>
+            </Link>
           </>
         ) : (
           // Else if user is not authenticated

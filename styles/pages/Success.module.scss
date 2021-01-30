@@ -1,0 +1,38 @@
+// Success page
+.success {
+  display: block;
+  margin: 0px auto;
+  width: 100%;
+  max-width: 1200px;
+  text-align: center;
+
+  h2 {
+    margin-block-end: 0px;
+    font-size: 40px;
+  }
+
+  p {
+    color: rgba(0, 0, 0, 0.5);
+    margin-block-start: 10px;
+    max-width: 500px;
+    line-height: 150%;
+    margin: 15px auto;
+  }
+
+  // Redirect button to home
+  a {
+    padding: 18px 25px;
+    font-weight: 500;
+    font-size: 16px;
+    border: none;
+    text-decoration: none;
+    background-color: #000;
+    color: #fff;
+    margin-top: 20px;
+    display: inline-block;
+  }
+
+  a:hover {
+    background-color: rgba(0, 0, 0, 0.75);
+  }
+}
