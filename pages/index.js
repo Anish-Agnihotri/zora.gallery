@@ -129,9 +129,6 @@ export default function Home() {
                     {/* Metadata: name */}
                     <h3>{post.metadata.name}</h3>
 
-                    {/* Metadata: Description */}
-                    <p>{post.metadata.description}</p>
-
                     {/* Metadata: Owner */}
                     <span>
                       Collected by{" "}
