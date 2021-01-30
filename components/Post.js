@@ -54,7 +54,13 @@ export default function Post({
           <video autoPlay playsInline loop>
             <source src={contentURI} type={mimeType} />
           </video>
+        ) : mimeType === "" ? (
+          // If no media is uploaded (useful for /create)
+          <span className={styles.showcase__unsupported}>
+            No media uploaded.
+          </span>
         ) : (
+          // Else, if unsupported mimeType
           <span className={styles.showcase__unsupported}>
             Unsupported file type ({mimeType}). <br />
             <a href={contentURI} target="_blank" rel="noopener noreferrer">
