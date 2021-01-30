@@ -49,11 +49,11 @@ export default function Profile({ address }) {
         {/* Custom meta for profile */}
         <meta
           property="og:image"
-          content={`https://zora.gallery/meta/profile?address=${address}`}
+          content={`https://zora.gallery/api/meta/profile?address=${address}`}
         />
         <meta
           property="twitter:image"
-          content={`https://zora.gallery/meta/profile?address=${address}`}
+          content={`https://zora.gallery/api/meta/profile?address=${address}`}
         />
       </Head>
 
