@@ -103,7 +103,7 @@ function useWeb3() {
     const buffer = await getFileBuffer(file);
 
     // Generate content hashes
-    const contentHash = sha256FromBuffer(buffer);
+    const contentHash = sha256FromBuffer(Buffer.from(buffer));
     const metadataHash = sha256FromBuffer(Buffer.from(metadataJSON));
 
     // Upload files to fleek
