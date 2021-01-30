@@ -13,6 +13,7 @@ export default function Create() {
   const [upload, setUpload] = useState(null); // Uploaded file
   const [loading, setLoading] = useState(false); // Global loading state
   const [uploadName, setUploadName] = useState(""); // Uploaded file name
+  const [uploadText, setUploadText] = useState(null); // Text content
   const [description, setDescription] = useState(""); // Media description
 
   // Global state
@@ -51,11 +52,16 @@ export default function Create() {
     // Save file
     const [File] = file;
     setUpload(File);
-    console.log(File);
 
     // Update upload name
     const fileName = File.name;
     setUploadName(fileName);
+
+    // Update text content if text file
+    if (File.type.startsWith("text")) {
+      const textContent = await File.text();
+      setUploadText(textContent);
+    }
   };
 
   return (
@@ -215,7 +221,16 @@ export default function Create() {
                   ownerAddress={address}
                   createdAtTimestamp={Date.now() / 1000}
                   mimeType={upload ? upload.type : ""}
-                  contentURI={upload ? URL.createObjectURL(upload) : ""}
+                  contentURI={
+                    upload && upload.type
+                      ? // If file type is of text
+                        upload.type.startsWith("text")
+                        ? // Send text content instead of
+                          uploadText
+                        : // URL to resource
+                          URL.createObjectURL(upload)
+                      : ""
+                  }
                   name={name ? name : ""}
                 />
               </div>
