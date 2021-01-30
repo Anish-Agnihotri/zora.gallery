@@ -36,6 +36,30 @@ export const ZORA_MEDIA_BY_ID = (id) => {
 };
 
 /**
+ * Returns gql query to retrieve all Zora posts by owner
+ * @param {String} owner address
+ * @returns {gql} query with template string embedded
+ */
+export const ZORA_MEDIA_BY_OWNER = (owner) => {
+  return gql`
+    {
+      medias(where: { owner: "${owner}" }) {
+        id
+        owner {
+          id
+        }
+        creator {
+          id
+        }
+        contentURI
+        metadataURI
+        createdAtTimestamp
+      }
+    }
+  `;
+};
+
+/**
  * Calculates maximum number of Zora media items
  * @param {Object[]} users
  * @returns {Number} max number of Zora media items

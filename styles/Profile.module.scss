@@ -1,0 +1,72 @@
+// Profile parent component
+.profile {
+  max-width: 1400px;
+  margin: 0px auto;
+}
+
+// Profile head contnet
+.profile__head {
+  text-align: center;
+
+  // Avatar
+  img {
+    height: 120px;
+    width: 120px;
+    border-radius: 50%;
+    margin-bottom: 50px;
+  }
+
+  // Name/Address
+  h3 {
+    margin-block-start: 0px;
+    margin-block-end: 10px;
+    padding: 0px 30px;
+    word-break: break-all;
+    font-weight: 500;
+    font-size: 20px;
+  }
+
+  // Etherscan link
+  a {
+    color: rgba(0, 0, 0, 0.5);
+    text-decoration: underline;
+    font-size: 17px;
+  }
+}
+
+// Default case for loading + 0 owned medias
+.profile__media_empty {
+  padding-top: 50px;
+  max-width: 1400px;
+  margin: 0px auto;
+  text-align: center;
+
+  span {
+    color: rgba(0, 0, 0, 0.5);
+  }
+}
+
+// Showcase grid for posts when > 0 owned medias
+.profile__media {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0px, 1fr));
+  grid-auto-rows: 1fr;
+  gap: 50px 30px;
+  max-width: 1400px;
+  padding: 50px 0px;
+  margin: 0px auto;
+}
+
+// Responsiveness: 2 column
+@media screen and (max-width: 1100px) {
+  .profile__media {
+    grid-template-columns: repeat(2, minmax(0px, 1fr));
+  }
+}
+
+// Responsiveness: 1 column
+@media screen and (max-width: 750px) {
+  .profile__media {
+    grid-template-columns: repeat(1, minmax(0px, 1fr));
+  }
+}
