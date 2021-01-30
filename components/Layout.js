@@ -1,6 +1,6 @@
-import Link from "next/link"; // Dynamic routing
 import Head from "next/head"; // HTML Head
-import styles from "@styles/Layout.module.scss"; // Component styles
+import Header from "@components/Header"; // Header component
+import styles from "@styles/pages/Layout.module.scss"; // Component styles
 
 export default function Layout({ children }) {
   return (
@@ -13,25 +13,6 @@ export default function Layout({ children }) {
 
       {/* Content container */}
       <div className={styles.container}>{children}</div>
-    </div>
-  );
-}
-
-// Header
-function Header() {
-  return (
-    <div className={styles.header}>
-      <div className={styles.header__logo}>
-        {/* Logo */}
-        <Link href="/">
-          <a>
-            <img src="/logo_orb.png" alt="Zora" />
-          </a>
-        </Link>
-      </div>
-      <div className={styles.header__menu}>
-        <button>Connect Wallet</button>
-      </div>
     </div>
   );
 }

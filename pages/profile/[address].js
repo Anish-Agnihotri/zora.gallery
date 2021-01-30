@@ -1,11 +1,11 @@
-import client from "data"; // GraphQL client
+import client from "@data/index"; // GraphQL client
 import Post from "@components/Post"; // Post component
 import Layout from "@components/Layout"; // Layout wrapper
 import { useState, useEffect } from "react"; // State management
-import { getPostByID } from "data/functions"; // Post retrieval function
-import styles from "@styles/Profile.module.scss"; // Component styles
-import { ZORA_MEDIA_BY_OWNER } from "data/queries"; // Retrieval query
+import { getPostByID } from "@data/functions"; // Post retrieval function
 import makeBlockie from "ethereum-blockies-base64"; // Ethereum avatar
+import { ZORA_MEDIA_BY_OWNER } from "@data/queries"; // Retrieval query
+import styles from "@styles/pages/Profile.module.scss"; // Component styles
 
 export default function Profile({ address }) {
   const [posts, setPosts] = useState([]); // Posts array
@@ -16,7 +16,9 @@ export default function Profile({ address }) {
    */
   const collectOwnedMedia = async () => {
     // Collect all postIDs by owner
-    const allPosts = await client.request(ZORA_MEDIA_BY_OWNER(address));
+    const allPosts = await client.request(
+      ZORA_MEDIA_BY_OWNER(address.toLowerCase())
+    );
 
     let ownedMedia = [];
     // For all owned posts
@@ -49,7 +51,7 @@ export default function Profile({ address }) {
           <img src={makeBlockie(address)} alt="Avatar" />
 
           {/* Name/Address */}
-          <h3>{address}</h3>
+          <h3>{address.toLowerCase()}</h3>
 
           {/* Etherscan link */}
           <a

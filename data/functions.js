@@ -1,6 +1,6 @@
 import axios from "axios"; // Requests
 import client from "data"; // GraphQL requests
-import { ZORA_MEDIA_BY_ID } from "data/queries"; // GraphQL Queries
+import { ZORA_MEDIA_BY_ID } from "@data/queries"; // GraphQL Queries
 
 /**
  * Collect Zora media post by ID

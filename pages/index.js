@@ -1,10 +1,10 @@
-import client from "data"; // GraphQL client
+import client from "@data/index"; // GraphQL client
 import Post from "@components/Post"; // Post component
 import Layout from "@components/Layout"; // Layout
 import { useState, useEffect } from "react"; // React state management
-import { getPostByID } from "data/functions"; // Post collection helper
-import styles from "@styles/Home.module.scss"; // Component styles
-import { calculateLatestCreation, ZORA_CREATIONS_BY_USER } from "data/queries"; // queries
+import { getPostByID } from "@data/functions"; // Post collection helper
+import styles from "@styles/pages/Home.module.scss"; // Component styles
+import { calculateLatestCreation, ZORA_CREATIONS_BY_USER } from "@data/queries"; // queries
 
 export default function Home() {
   const [posts, setPosts] = useState([]); // Posts array
