@@ -36,7 +36,7 @@ export default function Profile({ address }) {
       }
     }
 
-    setPosts([...ownedMedia]); // Update owned posts
+    setPosts([...ownedMedia.reverse()]); // Update owned posts (reversed for newest first)
     setLoading(false); // Toggle loading
   };
 
