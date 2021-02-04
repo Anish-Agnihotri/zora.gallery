@@ -17,7 +17,10 @@ export const getPostByID = async (id) => {
   post.metadata = metadata.data;
 
   // If text media, collect post content
-  if (metadata.data.mimeType.startsWith("text")) {
+  if (
+    metadata.data.mimeType.startsWith("text") &&
+    !metadata.data.mimeType.endsWith("html")
+  ) {
     const text = await axios.get(post.contentURI);
     post.contentURI = text.data;
   }

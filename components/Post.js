@@ -37,11 +37,11 @@ export default function Post({
       </div>
 
       {/* Showcase card content */}
-      <div>
+      <div onClick={() => (window.location = contentURI)}>
         {mimeType.startsWith("image") ? (
           // If content-type === image, return img component
           <img src={contentURI} alt={name} />
-        ) : mimeType.startsWith("text") ? (
+        ) : mimeType.startsWith("text") && !mimeType === "text/html" ? (
           // If content-type === text, inject text
           <span>{contentURI}</span>
         ) : mimeType.startsWith("audio") ? (
