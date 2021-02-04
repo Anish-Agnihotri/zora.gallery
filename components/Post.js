@@ -37,7 +37,7 @@ export default function Post({
       </div>
 
       {/* Showcase card content */}
-      <div>
+      <div onClick={() => (window.location = contentURI)}>
         {mimeType.startsWith("image") ? (
           // If content-type === image, return img component
           <img src={contentURI} alt={name} />
