@@ -41,7 +41,7 @@ export default function Post({
         {mimeType.startsWith("image") ? (
           // If content-type === image, return img component
           <img src={contentURI} alt={name} />
-        ) : mimeType.startsWith("text") ? (
+        ) : mimeType.startsWith("text") && !mimeType === "text/html" ? (
           // If content-type === text, inject text
           <span>{contentURI}</span>
         ) : mimeType.startsWith("audio") ? (
