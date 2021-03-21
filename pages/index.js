@@ -27,7 +27,9 @@ export default function Home() {
         // Collect post
         const post = await getPostByID(i);
         // Push post to initialPosts
-        initialPosts.push(post);
+        if (post !== null) {
+          initialPosts.push(post);
+        }
       }
     }
 
@@ -50,7 +52,9 @@ export default function Home() {
         // Collect post
         const post = await getPostByID(i);
         // Push post to newPosts
-        newPosts.push(post);
+        if (post !== null) {
+          newPosts.push(post);
+        }
       }
     }
 

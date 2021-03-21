@@ -2,8 +2,8 @@ import { GraphQLClient } from "graphql-request"; // GraphQL request client
 
 // Create client
 const client = new GraphQLClient(
-  // Zora mainnet subgraph
-  "https://api.thegraph.com/subgraphs/name/ourzora/zora-v1"
+  // Zora Rinkeby subgraph
+  "https://api.thegraph.com/subgraphs/name/ourzora/zora-v1-rinkeby"
 );
 
 // Export client

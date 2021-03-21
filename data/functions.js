@@ -16,6 +16,11 @@ export const getPostByID = async (id) => {
   const metadata = await axios.get(post.metadataURI);
   post.metadata = metadata.data;
 
+  // Only show Zora posts
+  if (post.metadata.version !== "zora-20210101") {
+    return undefined;
+  }
+
   // If text media, collect post content
   if (metadata.data.mimeType.startsWith("text")) {
     const text = await axios.get(post.contentURI);
