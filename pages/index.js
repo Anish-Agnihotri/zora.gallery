@@ -26,8 +26,9 @@ export default function Home() {
       for (let i = numPosts; i >= numPosts - 5; i--) {
         // Collect post
         const post = await getPostByID(i);
+
         // Push post to initialPosts
-        if (post !== null) {
+        if (post != null) {
           initialPosts.push(post);
         }
       }
@@ -52,7 +53,7 @@ export default function Home() {
         // Collect post
         const post = await getPostByID(i);
         // Push post to newPosts
-        if (post !== null) {
+        if (post != null) {
           newPosts.push(post);
         }
       }
